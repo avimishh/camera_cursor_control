@@ -3,14 +3,13 @@ import numpy as np
 from pynput.mouse import Button, Controller
 import wx
 
-# definitions
+# initial definitions
 # get the screen resolution
 app = wx.App(False)
 screen_x, screen_y = wx.GetDisplaySize()
 cam_w, cam_h = 340, 220
 
 mouse = Controller()
-
 
 
 # detect green colored obj
@@ -65,12 +64,12 @@ while cam.isOpened():
         # center coordinate of second obj
         cx2 = x2 + w2 / 2
         cy2 = y2 + h2 / 2
-        # center coordinate between two objects
+        # center coordinate between two objects, the red point
         cx = (cx1 + cx2) / 2
         cy = (cy1 + cy2) / 2
         # drawing the line connecting the centers
         cv2.line(img, (int(cx1), int(cy1)), (int(cx2), int(cy2)), (255, 0, 0), 2)
-        # drawing the point
+        # drawing the red point
         cv2.circle(img, (int(cx), int(cy)), 2, (0, 0, 255), 2)
 
         mouseLoc = (screen_x - (cx * screen_x / cam_w), cy * screen_y / cam_h)
